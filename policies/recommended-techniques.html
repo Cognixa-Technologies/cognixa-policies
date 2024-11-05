@@ -11,21 +11,49 @@
 
   <h2>Type Hinting and Casting</h2>
   <ol>
-    <li>Type Declarations (Casting) set a variable to x type. For example <code>string: str = ...</code></li>
-    <li>This can be useful for ensuring variables are the correct type, and can also be done using the classes (For example: <code>score = int(string)</code></li>
-    <li>IMPORTANT NOTE: The above will raise a <code>TypeError</code> Exception if convertion fails. <code>Try-Except</code> blocks are recommended for all casting.</li>
-    <li>This allows for variables to be as a type, however this is not the same for parameters or keyword arguements (**kwargs)</li>
-    <li>Kwargs or parameters will use the same style, but to the affect of expecting a type instead of casting a type (Hinting)</li>
+    <li>Type Declarations (Casting) set a variable to a specific type. For example <code>string: str = ...</code></li>
+    <li>This is useful for ensuring variables are of the correct type and can also be done using casting (For example: <code>score = int(string)</code>).</li>
+    <li>IMPORTANT NOTE: The above will raise a <code>ValueError</code> Exception if conversion fails. <code>Try-Except</code> blocks are recommended for all casting.</li>
+    <li>This allows for variables to be typed; however, this is not the same for parameters or keyword arguments (**kwargs).</li>
+    <li>Keyword arguments or parameters will use the same style but will expect a type instead of casting a type (Hinting).</li>
     <li>For example: <code>def function(string: str = "Hello") -> None:</code> would expect a string. While this <b>WON'T</b> raise an error, Type Checkers will flag this.</li>
   </ol>
+
   <h2>Type Checkers</h2>
   <ol>
-    <li>Type Checkers are a form of hinting variable types. The key difference is they are defined data classes that are not built in.</li>
-    <li>Popular Type Checking tools are Pydantic and Typing (Where Pydantic is for creation, and typing is for predefined powerful types)</li>
-    <li>The way you can create a Type Checker would be by using modules such as Pydantic (Recommended).</li>
-    <li>For example: <code>from pydantic import BaseModel</code> and then doing <code>class data(BaseModel):</code></li>
-    <li>This class can then be used to type hint and cast. The data within can be validated using the validation decorator provided by pydantic (<code>from pydantic import field-validation, BaseModel</code>) and a function.</li>
-    <li></li>
+    <li>Type Checkers provide a way to hint at variable types. The key difference is they can enforce types for user-defined classes that aren't built-in.</li>
+    <li>Popular Type Checking tools are Pydantic and the built-in <code>typing</code> module (where Pydantic is for validation and creation of data models, and typing is for predefined powerful types).</li>
+    <li>You can create a Type Checker using modules such as Pydantic (Recommended).</li>
+    <li>For example: <code>from pydantic import BaseModel</code> and then defining a class like <code>class Data(BaseModel):</code></li>
+    <li>This class can then be used to type hint and validate data. The data within can be validated using the validation decorator provided by Pydantic (<code>from pydantic import validator, BaseModel</code>) alongside a function.</li>
+  </ol>
+
+  <h2>Context Handlers</h2>
+  <ol>
+    <li>Context Handlers are special functions that manage the lifecycle of resources in Python, ensuring they are properly set up and cleaned up after use.</li>
+    <li>Commonly implemented using the <code>with</code> statement, they help avoid resource leaks (like open files or network connections).</li>
+    <li>For example: <code>with open('file.txt', 'r') as file:</code> automatically handles closing the file when the block is exited.</li>
+    <li>They can also be created using contextlib's <code>contextmanager</code> decorator to define custom behavior for entering and exiting contexts.</li>
+    <li>Example: <code>from contextlib import contextmanager</code> followed by a function that yields a resource, ensuring cleanup in a <code>finally</code> block.</li>
+  </ol>
+
+  <h2>Decorators</h2>
+  <ol>
+    <li>Decorators are a powerful and flexible way to modify the behavior of functions or methods in Python.</li>
+    <li>They are defined as functions that return a wrapper function, which can add functionality before or after the wrapped function runs.</li>
+    <li>Common uses include logging, access control, or modifying input/output without changing the original function's code.</li>
+    <li>Example: <code>@decorator_name</code> above a function definition applies the decorator, like so:</li>
+    <li><code>@my_decorator<br>def my_function(): pass</code></li>
+    <li>Be cautious with decorators as they can introduce complexity and should be well-documented to avoid confusion.</li>
+  </ol>
+
+  <h2>Functions</h2>
+  <ol>
+    <li>Functions are reusable blocks of code that perform a specific task, improving code organization and readability.</li>
+    <li>Defined using the <code>def</code> keyword followed by the function name and parameters. For example: <code>def my_function(param1, param2):</code></li>
+    <li>They can return values using the <code>return</code> statement, allowing data to be passed back to the caller.</li>
+    <li>Functions can have default parameters, making them more flexible. For example: <code>def my_function(param1, param2="default"):</code></li>
+    <li>To enhance reliability, always validate input parameters and document the function's behavior clearly.</li>
   </ol>
 </body>
 </html>
