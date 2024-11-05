@@ -11,26 +11,40 @@
 
   <h2>Section 1: Contribution</h2>
   <ul>
-    <li>All contributions must be made as pull requests, which can only be accepted after security checks the file. No Exceptions.</li>
-    <li>Intentionally Malicious code will be blame linked and the author(s) placed on warning or immediately removed.</li>
-    <li>Please hold backups of your work securely under some form of encryption <a href="#ref1">[1]</a> provided by Security.</li>
-    <li>Ensure your Environment Variables are encrypted STRICTLY under AES-GCM, using the shared key for Environment Variables.</li>
-    <li>Contributed code must have full explanations of changes and a short reference name that must strictly be <code>Initials-Short Date-Version</code> (For example <code>OA-5.11.2024-0.1.0</code>)</li>
+    <li>All contributions must be made as pull requests. These will only be accepted after a full security review has been conducted on the files. No exceptions. All changes must be traceable and reversible.</li>
+    <li>Intentionally malicious code will result in a blame link and immediate removal of the contributor from the project. A warning will be issued to all involved parties to prevent further security breaches.</li>
+    <li>Backups of your work are mandatory and should be stored securely under a form of encryption <a href="#ref1">[1]</a> provided by the Security team. NEVER store unencrypted backups on public or shared drives.</li>
+    <li>Ensure that all Environment Variables are encrypted using AES-GCM, with the shared key for Environment Variables being used strictly for this purpose. Any deviations will result in immediate review.</li>
+    <li>Contributed code must include full explanations of changes. Additionally, every change should be accompanied by a reference name in the format <code>Initials-Short Date-Version</code> (For example <code>OA-5.11.2024-0.1.0</code>) for clear tracking and versioning.</li>
+    <li>Code contributions must also be accompanied by tests where applicable. Testing is mandatory for any new feature, change, or patch.</li>
   </ul>
 
   <h2>Section 2: Writing</h2>
   <ul>
-    <li>All code must be checked by security before publishing as mentioned in section 1 point 1.</li>
-    <li>Written code must be fully debugged by the writer.</li>
-    <li>Methods like <code>exec()</code> are NEVER to be used around user input.</li>
-    <li>Attempt to use Context Handlers, Decorators, Functions and Type Checkers where ever possible to remove room for error. <a href="#">[2]</a></li>
+    <li>All code must pass a security review before being published, as outlined in Section 1, Point 1. Code that has not been reviewed will be immediately rejected.</li>
+    <li>Writers are expected to debug their code thoroughly. Automated debugging tools are allowed, but manual debugging is also a requirement to ensure functionality and security.</li>
+    <li>Methods such as <code>exec()</code> and <code>eval()</code> are NEVER to be used with user input, as they introduce significant security vulnerabilities. Always sanitize and validate input before processing.</li>
+    <li>Context Handlers, Decorators, Functions, and Type Checkers must be used whenever possible to limit the risk of errors. These tools help enforce rules, reduce redundancy, and clarify the purpose of code blocks. Follow the DRY (Don't Repeat Yourself) principle for cleaner, more secure code.</li>
+    <li>Strict adherence to PEP 8 or equivalent style guides for your language is expected. Maintain readability, consistency, and clarity in all code you write. This reduces the potential for introducing errors and security flaws.</li>
   </ul>
 
   <h2>Section 3: Test Hosting</h2>
   <ul>
-    <li>Test hosting instances of Cognixa Core must be done when the main instance is available, or on your own bot instance.</li>
-    <li>Be wary of sending data over public networks (avoid where possible)</li>
-    <li>If utilising a Dual-Wrapper <a href="#">[3]</a> for the bot, please avoid leaving ports exposed on your device when you are not testing (for example if you are calling to a function server <a href="#">[4]</a> on the main port)</li>
+    <li>Test hosting instances of Cognixa Core should only be done when the main instance is operational, or on your own private bot instance. Avoid using the main production instance unless absolutely necessary. Public exposure of testing environments is prohibited.</li>
+    <li>Data transmission over public networks should be avoided whenever possible. Use local environments, VPNs, or secure tunnels for communication. Ensure all data transfers are encrypted end-to-end.</li>
+    <li>For testing, if utilizing a Dual-Wrapper <a href="#">[3]</a> for the bot, make sure to secure all exposed ports and disable them when they are not in active use. Leaving ports exposed unnecessarily is a significant security risk. Only expose necessary ports to the minimum required scope and disable unused services.</li>
+    <li>Testing scripts must be reviewed by a security team member before running in any shared or production environment. All sensitive data used in testing should be anonymized, and personally identifiable information should never be included in test data.</li>
+    <li>Before conducting tests on live systems, ensure all third-party services, dependencies, and libraries have been vetted for vulnerabilities. Use dependency scanning tools to check for known issues.</li>
+  </ul>
+
+  <h2>Section 4: Security Best Practices</h2>
+  <ul>
+    <li>Always follow secure coding principles, including proper input validation, output encoding, and sanitization. Remember that security starts with code quality and continues throughout the development lifecycle.</li>
+    <li>Follow the principle of least privilege for any processes, services, or users involved in development, testing, and deployment. Ensure only the minimum necessary permissions are granted to perform tasks.</li>
+    <li>Regularly audit and update your dependencies. Outdated or unpatched libraries are a common vector for exploits.</li>
+    <li>Encrypt all sensitive data in transit and at rest. Use industry-standard algorithms like AES-GCM for encryption and RSA for key exchange. Do not roll your own encryption solutions.</li>
+    <li>Ensure robust logging and monitoring of production systems. Set up alerts for suspicious activity or performance degradation that could indicate a potential security issue.</li>
+    <li>Regularly conduct security reviews, code audits, and penetration tests on all systems. Make security a continuous process, not just an afterthought.</li>
   </ul>
 
   <div id="ref1">
