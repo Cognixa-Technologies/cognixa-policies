@@ -1,31 +1,68 @@
-<h1>Security Policy for Developing</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Policy for Developing</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif; /* You can change this to any font you prefer */
+      line-height: 1.6;
+      margin: 20px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    code {
+      font-family: 'Courier New', monospace;
+      background-color: #f4f4f4;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Security Policy for Developing</h1>
 
-<h2>Section 1: Contribution</h2>
-<ul>
-  <li>All contributions must be made as pull requests, which can only be accepted after security checks the file. No Exceptions.</li>
-  <li>Intentionally Malicious code will be blame linked and the author(s) placed on warning or immediately removed.</li>
-  <li>Please hold backups of your work securely under some form of encryption <a href="#ref1">[1]</a> provided by Security.</li>
-  <li>Ensure your Environment Variables are encrypted STRICTLY under AES-GCM, using the shared key for Environment Variables.</li>
-  <li>Contributed code must have full explanations of changes and a short reference name that must strictly be <code>Initials-Short Date-Version</code> (For example <code>OA-5.11.2024-0.1.0</code>)</li>
-</ul>
+  <h2>Section 1: Contribution</h2>
+  <ul>
+    <li>All contributions must be made as pull requests, which can only be accepted after security checks the file. No Exceptions.</li>
+    <li>Intentionally Malicious code will be blame linked and the author(s) placed on warning or immediately removed.</li>
+    <li>Please hold backups of your work securely under some form of encryption <a href="#ref1">[1]</a> provided by Security.</li>
+    <li>Ensure your Environment Variables are encrypted STRICTLY under AES-GCM, using the shared key for Environment Variables.</li>
+    <li>Contributed code must have full explanations of changes and a short reference name that must strictly be <code>Initials-Short Date-Version</code> (For example <code>OA-5.11.2024-0.1.0</code>)</li>
+  </ul>
 
-<h2>Section 2: Writing</h2>
-<ul>
-  <li>All code must be checked by security before publishing as mentioned in section 1 point 1.</li>
-  <li>Written code must be fully debugged by the writer.</li>
-  <li>Methods like <code>exec()</code> are NEVER to be used around user input.</li>
-  <li>Attempt to use Context Handlers, Decorators, Functions and Type Checkers where ever possible to remove room for error. <a href="#">[2]</a></li>
-</ul>
+  <h2>Section 2: Writing</h2>
+  <ul>
+    <li>All code must be checked by security before publishing as mentioned in section 1 point 1.</li>
+    <li>Written code must be fully debugged by the writer.</li>
+    <li>Methods like <code>exec()</code> are NEVER to be used around user input.</li>
+    <li>Attempt to use Context Handlers, Decorators, Functions and Type Checkers where ever possible to remove room for error. <a href="#">[2]</a></li>
+  </ul>
 
-<h2>Section 3: Test Hosting</h2>
-<ul>
-  <li>Test hosting instances of Cognixa Core must be done when the main instance is available, or on your own bot instance.</li>
-  <li>Be wary of sending data over public networks (avoid where possible)</li>
-  <li>If utilising a Dual-Wrapper <a href="#">[3]</a> for the bot, please avoid leaving ports exposed on your device when you are not testing (for example if you are calling to a function server <a href="#">[4]</a> on the main port)</li>
-</ul>
+  <h2>Section 3: Test Hosting</h2>
+  <ul>
+    <li>Test hosting instances of Cognixa Core must be done when the main instance is available, or on your own bot instance.</li>
+    <li>Be wary of sending data over public networks (avoid where possible)</li>
+    <li>If utilising a Dual-Wrapper <a href="#">[3]</a> for the bot, please avoid leaving ports exposed on your device when you are not testing (for example if you are calling to a function server <a href="#">[4]</a> on the main port)</li>
+  </ul>
 
-<div id="ref1">
-  <p>
-    <a href="#">[1]</a>: Secure forms of encryption can be found <a href="#">here</a>
-  </p>
-</div>
+  <div id="ref1">
+    <p>
+      <a href="#">[1]</a>: Secure forms of encryption can be found <a href="#">here</a>
+    </p>
+  </div>
+</body>
+</html>
