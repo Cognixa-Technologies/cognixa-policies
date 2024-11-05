@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encryption and Security</title>
+  <link rel="stylesheet" href="/cognixa-policies/styles.css">
+</head>
+<body>
+  <h1>Encryption and Security</h1>
+
+  <h2>Symmetric Encryption</h2>
+  <ol>
+    <li>Symmetric encryption uses the same key for both encryption and decryption. This makes it fast and efficient for bulk data processing.</li>
+    <li>Common algorithms include <b>AES (Advanced Encryption Standard)</b>, <b>DES (Data Encryption Standard)</b>, and <b>3DES (Triple DES)</b>.</li>
+    <li><b>AES</b> is the most widely recommended algorithm and is considered highly secure when used with 256-bit keys. It's widely supported and used for everything from file encryption to communications.</li>
+    <li><b>Python implementation:</b> Use the <code>pycryptodome</code> library for AES encryption:
+      <pre><code>from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+from Crypto.Random import get_random_bytes
+
+key = get_random_bytes(32)  # AES-256
+cipher = AES.new(key, AES.MODE_CBC)
+ciphertext = cipher.encrypt(pad(data, AES.block_size))
+</code></pre>
+    </li>
+    <li>However, symmetric encryption requires secure key management, as the same key must be kept secret by both the sender and the receiver.</li>
+    <li>IMPORTANT: If the key is compromised, the entire encryption scheme is broken. Hence, **key rotation** and **secure key storage** (like hardware security modules) are essential.</li>
+  </ol>
+
+  <h2>Asymmetric Encryption</h2>
+  <ol>
+    <li>Asymmetric encryption, also known as public-key cryptography, uses two keys: a public key for encryption and a private key for decryption.</li>
+    <li>This eliminates the need to exchange keys securely, as only the private key must be kept secret.</li>
+    <li>Popular asymmetric algorithms include <b>RSA</b>, <b>DSA (Digital Signature Algorithm)</b>, and <b>ECC (Elliptic Curve Cryptography)</b>.</li>
+    <li><b>Python implementation:</b> Use <code>pycryptodome</code> for RSA encryption:
+      <pre><code>from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.Random import get_random_bytes
+
+key = RSA.generate(2048)
+cipher = PKCS1_OAEP.new(key.publickey())
+ciphertext = cipher.encrypt(b'Encrypted message')
+</code></pre>
+    </li>
+    <li>Asymmetric encryption is slower than symmetric encryption but is crucial for securely exchanging keys or verifying the authenticity of messages (via digital signatures).</li>
+    <li>TIP: For best security, it’s common to use asymmetric encryption for securely sharing a symmetric key, which is then used for the rest of the communication (hybrid encryption).</li>
+  </ol>
+
+  <h2>Hashing</h2>
+  <ol>
+    <li>Hashing is the process of transforming data into a fixed-size string of characters, typically for verification purposes.</li>
+    <li>Hash functions like <b>SHA-256 (Secure Hash Algorithm)</b> and <b>MD5</b> are used to generate unique identifiers for data, such as passwords or file integrity checks.</li>
+    <li>Unlike encryption, hashing is **one-way**, meaning it cannot be reversed to retrieve the original data.</li>
+    <li>Python implementation for hashing with SHA-256:
+      <pre><code>import hashlib
+
+data = b"Sensitive data"
+hash_object = hashlib.sha256(data)
+hex_dig = hash_object.hexdigest()
+</code></pre>
+    </li>
+    <li>Hashing is useful for storing passwords securely. When a user logs in, the system hashes the inputted password and compares it to the stored hash.</li>
+    <li>IMPORTANT: Always **salt** your hashes by adding a unique value before hashing. This protects against **rainbow table** attacks.</li>
+    <li>SHA-256 is a common and secure choice for hashing, but be cautious with older algorithms like MD5, which have known vulnerabilities.</li>
+  </ol>
+
+  <h2>Digital Signatures</h2>
+  <ol>
+    <li>Digital signatures use asymmetric encryption to verify the authenticity and integrity of a message or document.</li>
+    <li>The sender signs the data with their private key, and the recipient can verify the signature using the sender’s public key.</li>
+    <li><b>Python implementation:</b> Use <code>pycryptodome</code> for signing and verifying data:
+      <pre><code>from Crypto.Signature import pkcs1_15
+from Crypto.PublicKey import RSA
+from Crypto.Hash import SHA256
+
+key = RSA.generate(2048)
+message = b"Important message"
+hash_obj = SHA256.new(message)
+signature = pkcs1_15.new(key).sign(hash_obj)
+</code></pre>
+    </li>
+    <li>TIP: The use of **hashing** alongside digital signatures ensures that the original message or file has not been tampered with during transmission.</li>
+    <li>For example, a document signed with the sender's private key can be verified by anyone using the sender’s public key. This provides **non-repudiation**, meaning the sender cannot deny sending the message.</li>
+  </ol>
+
+  <h2>Encryption in Transit and At Rest</h2>
+  <ol>
+    <li>Encryption is crucial not only for storing sensitive data but also for protecting data in transit.</li>
+    <li>**Encryption in transit** ensures that data is encrypted while being transferred over a network, such as during a login session or file transfer. This is usually achieved using protocols like HTTPS (SSL/TLS).</li>
+    <li>**Encryption at rest** protects data when it is stored on disks, databases, or cloud storage. This can be done with disk-level encryption or encrypting files before storing them.</li>
+    <li>Both types of encryption are essential for protecting sensitive information and ensuring compliance with regulations such as GDPR and HIPAA.</li>
+    <li>TIP: Always enable encryption in transit for any system handling sensitive data, and ensure your storage uses encryption at rest, particularly for database backups or cloud storage.</li>
+  </ol>
+
+  <h2>Security Best Practices</h2>
+  <ol>
+    <li>**Key Management**: Proper key management practices are essential. Use a dedicated key management system (KMS) to generate, store, and rotate encryption keys securely.</li>
+    <li>**Multi-Factor Authentication (MFA)**: Enhance security by requiring additional authentication factors beyond just a password (e.g., SMS, authentication apps).</li>
+    <li>**Regular Audits and Updates**: Ensure your cryptographic libraries and systems are up to date with the latest security patches. Regular security audits help identify vulnerabilities.</li>
+    <li>**Secure Your Environment**: Protect the system where encryption is performed. If an attacker can access the server or endpoint, they might steal the encryption keys or decrypted data.</li>
+    <li>IMPORTANT: Do not hard-code encryption keys directly in your source code. Use environment variables or dedicated vault services for storing them.</li>
+  </ol>
+
+</body>
+</html>
