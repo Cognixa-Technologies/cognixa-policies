@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pycord and Discord.js Wrappers</title>
+  <link rel="stylesheet" href="/cognixa-policies/styles.css">
+</head>
+<body>
+  <h1>Pycord and Discord.js Wrappers</h1>
+
+  <h2>Pycord Wrapper</h2>
+  <ol>
+    <li>Pycord is a popular Python wrapper for the Discord API, allowing you to create bots and interact with Discord servers.</li>
+    <li>It supports a wide range of Discord features, including slash commands, message handling, events, and more.</li>
+    <li><b>Installation:</b> Use <code>pip install py-cord</code> to install Pycord.</li>
+    <li><b>Basic Example:</b> Here's a simple bot setup in Pycord:
+      <pre><code>import discord
+from discord.ext import commands
+
+bot = commands.Bot(command_prefix="!")
+
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user}')
+
+bot.run('YOUR_BOT_TOKEN')
+</code></pre>
+    </li>
+    <li><b>Events:</b> Pycord provides various events such as <code>on_ready</code>, <code>on_message</code>, and <code>on_member_join</code>, allowing you to handle user interactions, messages, and more.</li>
+    <li><b>Slash Commands:</b> You can easily create slash commands in Pycord using the <code>bot.slash_command()</code> decorator, enabling you to interact with users in a more structured way.</li>
+  </ol>
+
+  <h2>Discord.js Wrapper</h2>
+  <ol>
+    <li>Discord.js is a powerful JavaScript library for interacting with the Discord API, designed to work with Node.js.</li>
+    <li>It supports a range of features similar to Pycord but is tailored for the JavaScript/TypeScript ecosystem.</li>
+    <li><b>Installation:</b> Use <code>npm install discord.js</code> to install Discord.js.</li>
+    <li><b>Basic Example:</b> Here's a simple bot setup in Discord.js:
+      <pre><code>const { Client, GatewayIntentBits } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+client.once('ready', () => {
+  console.log('Logged in as ' + client.user.tag);
+});
+
+client.login('YOUR_BOT_TOKEN');
+</code></pre>
+    </li>
+    <li><b>Events:</b> Discord.js also uses events like <code>ready</code>, <code>messageCreate</code>, and <code>guildMemberAdd</code> to handle various activities.</li>
+    <li><b>Slash Commands:</b> You can create slash commands using the <code>SlashCommandBuilder</code> and register them with Discord’s API.</li>
+  </ol>
+
+  <h2 id="Dual-Wrapper">Dual Wrappers</h2>
+  <ol>
+    <li>The <b>Dual Wrappers</b> system refers to the integration of both Pycord (Python) and Discord.js (JavaScript) in a unified project, allowing developers to leverage the strengths of both ecosystems.</li>
+    <li>In this setup, one wrapper can handle specific functionality like message processing or database interactions, while the other focuses on high-performance aspects like real-time event handling or certain APIs not natively available in Python.</li>
+    <li>For example, you might use Pycord to manage interactions and logic on the Python side, while Discord.js could handle high-frequency events or advanced message reactions.</li>
+    <li>Dual Wrappers involve careful design and communication between Python and JavaScript components. One common approach is using an API server to bridge the two languages. (FastAPI/Hypercorn to Axios/Express)</li>
+    <li>Example: The Python server could expose endpoints for the JavaScript bot to query, or both could communicate through message queues or shared files for asynchronous operations.</li>
+  </ol>
+
+  <h2>Function Server</h2>
+  <ol>
+    <li>The <b>Function Server</b> is a Python-based server that hosts global functions, allowing JavaScript code (or other wrappers) to call Python functions easily.</li>
+    <li>It acts as an intermediary between the Python and JavaScript ecosystems, enabling seamless communication for processing tasks that require Python’s capabilities, such as data handling, file manipulation, or complex computations.</li>
+    <li>The Function Server allows for centralized logic and utility functions to be shared between different parts of your bot system, enabling better scalability and maintainability.</li>
+    <li>This approach minimizes the amount of code duplication and helps in using the right tools for the job. For example, Python can handle major tasks, while JavaScript focuses on event handling.</li>
+  </ol>
+</body>
+</html>
