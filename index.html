@@ -24,15 +24,15 @@
     <li>All code must pass a security review before being published, as outlined in Section 1, Point 1. Code that has not been reviewed will be immediately rejected.</li>
     <li>Writers are expected to debug their code thoroughly. Automated debugging tools are allowed, but manual debugging is also a requirement to ensure functionality and security.</li>
     <li>Methods such as <code>exec()</code> and <code>eval()</code> are NEVER to be used with user input, as they introduce significant security vulnerabilities. Always sanitise and validate input before processing.</li>
-    <li>Context Handlers, Decorators, Functions, and Type Checkers must be used whenever possible to limit the risk of errors. These tools help enforce rules, reduce redundancy, and clarify the purpose of code blocks. Follow the DRY (Don't Repeat Yourself) principle for cleaner, more secure code.</li>
-    <li>Strict adherence to PEP 8 or equivalent style guides for your language is expected. Maintain readability, consistency, and clarity in all code you write. This reduces the potential for introducing errors and security flaws.</li>
+    <li>Context Handlers, Decorators, Functions, and Type Checkers <a href="#ref2">[2]</a> must be used whenever possible to limit the risk of errors. These tools help enforce rules, reduce redundancy, and clarify the purpose of code blocks. Follow the DRY (Don't Repeat Yourself) principle for cleaner, more secure code.</li>
+    <li>Strict adherence to PEP 8 <a href="#ref3">[3]</a> or equivalent style guides for your language is expected. Maintain readability, consistency, and clarity in all code you write. This reduces the potential for introducing errors and security flaws.</li>
   </ul>
 
   <h2>Section 3: Test Hosting</h2>
   <ul>
     <li>Test hosting instances of Cognixa Core should only be done when the testing instance is available, or on your own private bot instance. Avoid using the main production instance unless absolutely necessary. Public exposure of testing environments is prohibited.</li>
     <li>Data transmission over public networks should be avoided whenever possible. Use local environments, VPNs, or secure tunnels for communication. Ensure all data transfers are encrypted end-to-end.</li>
-    <li>For testing, if utilising a Dual-Wrapper <a href="#">[3]</a> for the bot, make sure to secure all exposed ports and disable them when they are not in active use. Leaving ports exposed unnecessarily is a significant security risk. Only expose necessary ports to the minimum required scope and disable unused services.</li>
+    <li>For testing, if utilising a Dual-Wrapper <a href="#ref4">[4]</a> for the bot, make sure to secure all exposed ports and disable them when they are not in active use. Leaving ports exposed unnecessarily is a significant security risk. Only expose necessary ports to the minimum required scope and disable unused services.</li>
     <li>Testing scripts must be reviewed by a security team member before running in any shared or production environment. All sensitive data used in testing should be anonymised, and personally identifiable information should never be included in test data.</li>
     <li>Before conducting tests on live systems, ensure all third-party services, dependencies, and libraries have been vetted for vulnerabilities. Use dependency scanning tools to check for known issues.</li>
   </ul>
@@ -47,9 +47,30 @@
     <li>Regularly conduct security reviews, code audits, and penetration tests on all systems. Make security a continuous process, not just an afterthought.</li>
   </ul>
 
+  <h2>References</h2>
   <div id="ref1">
     <p>
-      <a href="#">[1]</a>: Secure forms of encryption can be found <a href="#">here</a>
+      [1]: Secure forms of encryption can be found <a href="/cognixa-policies/encryption" target="_blank" rel="noopener noreferrer">here</a>.
+    </p>
+  </div>
+  <div id="ref2">
+    <p>
+      [2]: Context Handlers, Decorators, Functions, and Type Checkers are recommended to enhance code security and reliability. They allow for better error handling and type validation. Read more <a href="/cognixa-policies/validation" target="_blank" rel="noopener noreferrer">here</a>.
+    </p>
+  </div>
+  <div id="ref3">
+    <p>
+      [3]: PEP 8 is the style guide for Python code. Follow it for better readability and consistency in your projects. More details can be found <a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener noreferrer">here</a>.
+    </p>
+  </div>
+  <div id="ref4">
+    <p>
+      [4]: Dual-Wrapper refers to the system that enables seamless communication between TypeScript and Python for Discord bot commands. Read more <a href="/cognixa-policies/wrappers#Dual-Wrapper" target="_blank" rel="noopener noreferrer">here</a>.
+    </p>
+  </div>
+  <div id="ref5">
+    <p>
+      [5]: Function server refers to the Python server that hosts globalised functions for communication with TypeScript wrappers or Discord wrappers. Read more <a href="/cognixa-policies/wrappers#Function-Server" target="_blank" rel="noopener noreferrer">here</a>.
     </p>
   </div>
 </body>
