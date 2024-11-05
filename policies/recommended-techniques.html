@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation Techniques</title>
+  <link rel="stylesheet" href="/cognixa-policies/styles.css">
+</head>
+<body>
+  <h1>Recommended Techniques (Python)</h1>
+
+  <h2>Type Hinting and Casting</h2>
+  <ol>
+    <li>Type Declarations (Casting) set a variable to x type. For example <code>string: str = ...</code></li>
+    <li>This can be useful for ensuring variables are the correct type, and can also be done using the classes (For example: <code>score = int(string)</code></li>
+    <li>IMPORTANT NOTE: The above will raise a <code>TypeError</code> Exception if convertion fails. <code>Try-Except</code> blocks are recommended for all casting.</li>
+    <li>This allows for variables to be as a type, however this is not the same for parameters or keyword arguements (**kwargs)</li>
+    <li>Kwargs or parameters will use the same style, but to the affect of expecting a type instead of casting a type (Hinting)</li>
+    <li>For example: <code>def function(string: str = "Hello") -> None:</code> would expect a string. While this <b>WON'T</b> raise an error, Type Checkers will flag this.</li>
+  </ol>
+  <h2>Type Checkers</h2>
+  <ol>
+    <li>Type Checkers are a form of hinting variable types. The key difference is they are defined data classes that are not built in.</li>
+    <li>Popular Type Checking tools are Pydantic and Typing (Where Pydantic is for creation, and typing is for predefined powerful types)</li>
+    <li>The way you can create a Type Checker would be by using modules such as Pydantic (Recommended).</li>
+    <li>For example: <code>from pydantic import BaseModel</code> and then doing <code>class data(BaseModel):</code></li>
+    <li>This class can then be used to type hint and cast. The data within can be validated using the validation decorator provided by pydantic (<code>from pydantic import field-validation, BaseModel</code>) and a function.</li>
+    <li></li>
+  </ol>
+</body>
+</html>
